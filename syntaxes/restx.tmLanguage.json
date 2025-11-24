@@ -1,0 +1,260 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "RESTx",
+  "scopeName": "source.restx",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#metadata" },
+    { "include": "#keywords" },
+    { "include": "#http-methods" },
+    { "include": "#routes" },
+    { "include": "#types" },
+    { "include": "#annotations" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#operators" },
+    { "include": "#variables" },
+    { "include": "#constants" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.restx",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "metadata": {
+      "patterns": [
+        {
+          "name": "keyword.declaration.api.restx",
+          "match": "^\\s*(api)\\s+",
+          "captures": {
+            "1": { "name": "keyword.declaration.restx" }
+          }
+        },
+        {
+          "name": "meta.metadata.restx",
+          "match": "^\\s*(description|server|basePath|version)\\s*:",
+          "captures": {
+            "1": { "name": "keyword.other.metadata.restx" }
+          }
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.declaration.restx",
+          "match": "\\b(api|env|error|type|table|integration|webhook|hook|task|flow)\\b"
+        },
+        {
+          "name": "keyword.control.restx",
+          "match": "\\b(if|else|for|in|match|return|throw|async|await|transaction|notransaction)\\b"
+        },
+        {
+          "name": "keyword.other.restx",
+          "match": "\\b(auth|authorize|body|include|where|orderBy|limit|offset|paginate|findById|insert|update|delete|upsert|count|sum|avg|min|max|first|all)\\b"
+        },
+        {
+          "name": "storage.modifier.restx",
+          "match": "\\b(pk|unique|default|required|optional|nullable)\\b"
+        },
+        {
+          "name": "keyword.other.auth.restx",
+          "match": "\\b(bearer|basic|apiKey|none)\\b"
+        },
+        {
+          "name": "keyword.control.conditional.restx",
+          "match": "\\?"
+        }
+      ]
+    },
+    "http-methods": {
+      "patterns": [
+        {
+          "name": "keyword.other.http-method.get.restx",
+          "match": "^\\s*(GET)\\b"
+        },
+        {
+          "name": "keyword.other.http-method.post.restx",
+          "match": "^\\s*(POST)\\b"
+        },
+        {
+          "name": "keyword.other.http-method.put.restx",
+          "match": "^\\s*(PUT)\\b"
+        },
+        {
+          "name": "keyword.other.http-method.patch.restx",
+          "match": "^\\s*(PATCH)\\b"
+        },
+        {
+          "name": "keyword.other.http-method.delete.restx",
+          "match": "^\\s*(DELETE)\\b"
+        }
+      ]
+    },
+    "routes": {
+      "patterns": [
+        {
+          "name": "string.other.route.restx",
+          "match": "(/[a-zA-Z0-9_/:?&=.-]*)"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.primitive.restx",
+          "match": "\\b(str|int|long|float|double|bool|date|datetime|time|timestamp|email|uri|url|uuid|binary|byte|secret|any|void|text|json|jsonb|bigint|decimal)\\b"
+        },
+        {
+          "name": "support.type.generic.restx",
+          "match": "\\b(Paginated|ApiResponse|BatchResult)\\b"
+        },
+        {
+          "name": "entity.name.type.restx",
+          "match": "\\b([A-Z][a-zA-Z0-9]*)\\b"
+        }
+      ]
+    },
+    "annotations": {
+      "patterns": [
+        {
+          "name": "meta.annotation.restx",
+          "match": "@(\\w+)(\\([^)]*\\))?",
+          "captures": {
+            "1": { "name": "entity.name.function.decorator.restx" },
+            "2": { "name": "meta.annotation.arguments.restx" }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.restx",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.restx",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.backtick.restx",
+          "begin": "`",
+          "end": "`"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.restx",
+          "match": "\\b[0-9]+\\.[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.integer.restx",
+          "match": "\\b[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.duration.restx",
+          "match": "\\b[0-9]+(ms|s|m|h|d)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.arrow.restx",
+          "match": "->"
+        },
+        {
+          "name": "keyword.operator.comparison.restx",
+          "match": "(==|!=|<=|>=|<|>)"
+        },
+        {
+          "name": "keyword.operator.logical.restx",
+          "match": "(&&|\\|\\||!)"
+        },
+        {
+          "name": "keyword.operator.assignment.restx",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.spread.restx",
+          "match": "\\.\\.\\."
+        },
+        {
+          "name": "keyword.operator.colon.restx",
+          "match": ":"
+        },
+        {
+          "name": "keyword.operator.pipe.restx",
+          "match": "\\|"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.env.restx",
+          "match": "\\$env\\.[a-zA-Z_][a-zA-Z0-9_]*"
+        },
+        {
+          "name": "variable.other.magic.restx",
+          "match": "\\$(auth|request|response|query|rateLimit)\\b"
+        },
+        {
+          "name": "variable.other.integration.restx",
+          "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*"
+        },
+        {
+          "name": "variable.other.database.restx",
+          "match": "\\bdb\\.[a-zA-Z_][a-zA-Z0-9_]*"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.restx",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "constant.language.null.restx",
+          "match": "\\b(null)\\b"
+        },
+        {
+          "name": "support.function.builtin.restx",
+          "match": "\\b(now|uuid|hash|verify|random|log|email|cache|webhook|jwt)\\b"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.definition.block.restx",
+          "match": "[{}]"
+        },
+        {
+          "name": "punctuation.definition.array.restx",
+          "match": "[\\[\\]]"
+        },
+        {
+          "name": "punctuation.definition.parameters.restx",
+          "match": "[()]"
+        },
+        {
+          "name": "punctuation.separator.restx",
+          "match": ","
+        }
+      ]
+    }
+  }
+}

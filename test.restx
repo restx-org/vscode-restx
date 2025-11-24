@@ -1,0 +1,29 @@
+# Test file for RESTx extension
+
+api TestAPI 1.0.0
+server: "https://api.example.com"
+
+env {
+  database_url: str
+  api_key: secret
+}
+
+type User {
+  id: uuid
+  email: email
+  name: str
+}
+
+table users {
+  id: uuid pk
+  email: email unique
+  created_at: timestamp = now()
+}
+
+GET /users/:id -> User
+  auth: bearer
+  flow: {
+    user -> db.users.findById(id)
+    ? user == null : throw 404
+    return -> user
+  }
